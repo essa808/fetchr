@@ -1,0 +1,32 @@
+{
+  "name": {
+    "message": "Fetchr"
+  },
+  "description": {
+    "message": "Send downloads to the Fetchr download manager."
+  },
+  "menuDownload": {
+    "message": "Download with Fetchr"
+  },
+  "catchDownloads": {
+    "message": "Catch downloads"
+  },
+  "notOnThisSite": {
+    "message": "Not on this site"
+  },
+  "statusConnected": {
+    "message": "Connected"
+  },
+  "statusNotRunning": {
+    "message": "App not running"
+  },
+  "statusMissing": {
+    "message": "Not connected"
+  },
+  "helpNotRunning": {
+    "message": "Fetchr will start by itself when you download something."
+  },
+  "helpMissing": {
+    "message": "Open Fetchr, click Browser, then Connect."
+  }
+}

@@ -1,0 +1,115 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+  <sys:String x:Key="S.AppName">Fetchr</sys:String>
+
+  <sys:String x:Key="S.AddLink">إضافة رابط</sys:String>
+  <sys:String x:Key="S.Resume">استئناف</sys:String>
+  <sys:String x:Key="S.Pause">إيقاف مؤقت</sys:String>
+  <sys:String x:Key="S.Extract">فك الضغط</sys:String>
+  <sys:String x:Key="S.OpenFolder">فتح المجلد</sys:String>
+  <sys:String x:Key="S.Open">فتح</sys:String>
+  <sys:String x:Key="S.Delete">حذف</sys:String>
+  <sys:String x:Key="S.AutoExtract">فك ضغط الملفات تلقائياً</sys:String>
+
+  <sys:String x:Key="S.Filter.All">الكل</sys:String>
+  <sys:String x:Key="S.Filter.Downloading">قيد التحميل</sys:String>
+  <sys:String x:Key="S.Filter.Completed">مكتمل</sys:String>
+  <sys:String x:Key="S.Filter.Unfinished">غير مكتمل</sys:String>
+
+  <sys:String x:Key="S.Col.Name">الاسم</sys:String>
+  <sys:String x:Key="S.Col.Size">الحجم</sys:String>
+  <sys:String x:Key="S.Col.Status">الحالة</sys:String>
+  <sys:String x:Key="S.Col.Progress">التقدم</sys:String>
+  <sys:String x:Key="S.Col.Speed">السرعة</sys:String>
+  <sys:String x:Key="S.Col.TimeLeft">المتبقي</sys:String>
+  <sys:String x:Key="S.Col.Added">أضيف</sys:String>
+
+  <sys:String x:Key="S.Empty.Title">لا توجد تحميلات بعد</sys:String>
+  <sys:String x:Key="S.Empty.Hint">الصق رابطاً للبدء. يتم فك ضغط الأرشيفات لك تلقائياً عند اكتمالها.</sys:String>
+  <sys:String x:Key="S.Empty.Filtered">لا شيء هنا حالياً</sys:String>
+  <sys:String x:Key="S.Active">نشط</sys:String>
+
+  <sys:String x:Key="S.Status.queued">في الانتظار</sys:String>
+  <sys:String x:Key="S.Status.downloading">قيد التحميل</sys:String>
+  <sys:String x:Key="S.Status.paused">متوقف</sys:String>
+  <sys:String x:Key="S.Status.completed">مكتمل</sys:String>
+  <sys:String x:Key="S.Status.error">خطأ</sys:String>
+  <sys:String x:Key="S.Status.extracting">جارٍ فك الضغط</sys:String>
+  <sys:String x:Key="S.Status.extracted">تم فك الضغط</sys:String>
+  <sys:String x:Key="S.Status.extract_failed">فشل فك الضغط</sys:String>
+
+  <sys:String x:Key="S.Add.Title">إضافة تحميل</sys:String>
+  <sys:String x:Key="S.Add.Link">الرابط</sys:String>
+  <sys:String x:Key="S.Add.Check">فحص الرابط</sys:String>
+  <sys:String x:Key="S.Add.Checking">جارٍ الفحص…</sys:String>
+  <sys:String x:Key="S.Add.FileName">اسم الملف</sys:String>
+  <sys:String x:Key="S.Add.SaveTo">حفظ في</sys:String>
+  <sys:String x:Key="S.Add.Browse">استعراض…</sys:String>
+  <sys:String x:Key="S.Add.Start">ابدأ التحميل</sys:String>
+  <sys:String x:Key="S.Add.Later">إضافة متوقفاً</sys:String>
+  <sys:String x:Key="S.Cancel">إلغاء</sys:String>
+  <sys:String x:Key="S.Close">إغلاق</sys:String>
+  <sys:String x:Key="S.Add.Resumable">يمكن إيقافه واستكماله</sys:String>
+  <sys:String x:Key="S.Add.NotResumable">هذا الخادم لا يدعم الاستكمال: الإيقاف سيعيد التحميل من البداية</sys:String>
+  <sys:String x:Key="S.Add.WillExtract">سيُفك ضغطه في مجلد خاص به عند الاكتمال</sys:String>
+  <sys:String x:Key="S.Add.UnknownSize">حجم غير معروف</sys:String>
+  <sys:String x:Key="S.Add.Free">المساحة الحرة على القرص: {0}</sys:String>
+  <sys:String x:Key="S.Add.Invalid">أدخل رابطاً يبدأ بـ http:// أو https://</sys:String>
+
+  <sys:String x:Key="S.Prog.Downloaded">تم تحميل</sys:String>
+  <sys:String x:Key="S.Prog.Speed">السرعة</sys:String>
+  <sys:String x:Key="S.Prog.TimeLeft">الوقت المتبقي</sys:String>
+  <sys:String x:Key="S.Prog.Connections">الاتصالات</sys:String>
+  <sys:String x:Key="S.Prog.Resume">دعم الاستكمال</sys:String>
+  <sys:String x:Key="S.Yes">نعم</sys:String>
+  <sys:String x:Key="S.No">لا</sys:String>
+
+  <sys:String x:Key="S.Done.Title">اكتمل التحميل</sys:String>
+  <sys:String x:Key="S.Done.OpenExtracted">فتح المجلد المستخرج</sys:String>
+  <sys:String x:Key="S.Done.DontShow">لا تُظهر هذا بعد كل تحميل</sys:String>
+
+  <sys:String x:Key="S.Del.Title">إزالة التحميلات</sys:String>
+  <sys:String x:Key="S.Del.Body">إزالة التحميلات المحددة من القائمة؟ تُحذف الأجزاء غير المكتملة. الملفات المكتملة تبقى في مكانها إلا إذا حددت الخيار أدناه.</sys:String>
+  <sys:String x:Key="S.Del.Recycle">نقل الملفات المكتملة أيضاً إلى سلة المحذوفات</sys:String>
+  <sys:String x:Key="S.Del.Confirm">إزالة</sys:String>
+
+  <!-- M2 -->
+  <sys:String x:Key="S.Status.waiting_parts">بانتظار الأجزاء</sys:String>
+  <sys:String x:Key="S.Status.needs_password">يحتاج كلمة مرور</sys:String>
+  <sys:String x:Key="S.Filter.Categories">التصنيفات</sys:String>
+  <sys:String x:Key="S.Cat.Compressed">مضغوطات</sys:String>
+  <sys:String x:Key="S.Cat.Programs">برامج</sys:String>
+  <sys:String x:Key="S.Cat.Video">فيديو</sys:String>
+  <sys:String x:Key="S.Cat.Music">موسيقى</sys:String>
+  <sys:String x:Key="S.Cat.Documents">مستندات</sys:String>
+  <sys:String x:Key="S.Cat.General">أخرى</sys:String>
+  <sys:String x:Key="S.Browser">المتصفح</sys:String>
+  <sys:String x:Key="S.Br.Title">التقاط التحميلات من المتصفح</sys:String>
+  <sys:String x:Key="S.Br.Intro">يتولى Fetchr التحميلات التي تبدأها في Chrome أو Edge، مع ملفات تعريف الارتباط الخاصة بتسجيل دخولك حتى تعمل الروابط المحمية أيضاً.</sys:String>
+  <sys:String x:Key="S.Br.Step1">١. اربط Fetchr بمتصفحاتك (يضيف مدخلاً واحداً في السجل لحساب Windows الخاص بك فقط).</sys:String>
+  <sys:String x:Key="S.Br.Connect">ربط</sys:String>
+  <sys:String x:Key="S.Br.Disconnect">فصل</sys:String>
+  <sys:String x:Key="S.Br.Connected">مرتبط</sys:String>
+  <sys:String x:Key="S.Br.NotConnected">غير مرتبط</sys:String>
+  <sys:String x:Key="S.Br.Step2">٢. في المتصفح، افتح صفحة الإضافات وفعّل وضع المطوّر:</sys:String>
+  <sys:String x:Key="S.Br.Step3">٣. اختر "تحميل إضافة غير مضغوطة" (Load unpacked) وحدد هذا المجلد:</sys:String>
+  <sys:String x:Key="S.Br.CopyAddress">نسخ العنوان</sys:String>
+  <sys:String x:Key="S.Br.Copied">تم النسخ</sys:String>
+  <sys:String x:Key="S.Pwd.Title">كلمة مرور الأرشيف</sys:String>
+  <sys:String x:Key="S.Pwd.Body">هذا الأرشيف محمي. أدخل كلمة المرور لفك ضغطه.</sys:String>
+  <sys:String x:Key="S.Pwd.Password">كلمة المرور</sys:String>
+  <sys:String x:Key="S.Pwd.Remember">تذكّرها وجرّبها مع الأرشيفات الأخرى</sys:String>
+  <sys:String x:Key="S.Pwd.Wrong">كلمة المرور غير صحيحة. تحقق منها وحاول مرة أخرى.</sys:String>
+  <sys:String x:Key="S.Pwd.Unpack">فك الضغط</sys:String>
+  <sys:String x:Key="S.Tray.Open">فتح Fetchr</sys:String>
+  <sys:String x:Key="S.Tray.PauseAll">إيقاف الكل مؤقتاً</sys:String>
+  <sys:String x:Key="S.Tray.ResumeAll">استئناف الكل</sys:String>
+  <sys:String x:Key="S.Tray.Exit">خروج</sys:String>
+  <sys:String x:Key="S.Tray.StillRunning">يواصل Fetchr التحميل في الخلفية. انقر بزر الفأرة الأيمن على أيقونته في شريط المهام للخروج.</sys:String>
+  <sys:String x:Key="S.Note.Done">اكتمل التحميل</sys:String>
+  <sys:String x:Key="S.Note.Extracted">تم فك الضغط</sys:String>
+  <sys:String x:Key="S.Note.NeedsPassword">هذا الأرشيف يحتاج كلمة مرور</sys:String>
+  <sys:String x:Key="S.Note.Failed">فشل التحميل</sys:String>
+  <sys:String x:Key="S.Need7z">فك ضغط ملفات rar و7z يحتاج برنامج 7-Zip المجاني. ثبّته من 7-zip.org ثم اضغط فك الضغط مرة أخرى.</sys:String>
+</ResourceDictionary>

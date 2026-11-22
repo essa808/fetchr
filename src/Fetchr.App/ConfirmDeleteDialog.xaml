@@ -1,0 +1,18 @@
+<Window x:Class="Fetchr.App.ConfirmDeleteDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Style="{StaticResource Dialog}" Width="420" Title="{DynamicResource S.Del.Title}">
+  <StackPanel>
+    <StackPanel Margin="24,20,24,16">
+      <TextBlock Text="{DynamicResource S.Del.Title}" Style="{StaticResource Title}" Margin="0,0,0,8" />
+      <TextBlock Text="{DynamicResource S.Del.Body}" TextWrapping="Wrap" Style="{StaticResource Muted}" />
+      <CheckBox x:Name="Recycle" Content="{DynamicResource S.Del.Recycle}" Margin="0,16,0,0" />
+    </StackPanel>
+    <Border Style="{StaticResource DialogFooter}">
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <Button x:Name="CancelButton" Style="{StaticResource BtnGhost}" Content="{DynamicResource S.Cancel}" IsCancel="True" Margin="0,0,8,0" />
+        <Button Style="{StaticResource BtnDanger}" Content="{DynamicResource S.Del.Confirm}" Click="OnConfirm" />
+      </StackPanel>
+    </Border>
+  </StackPanel>
+</Window>

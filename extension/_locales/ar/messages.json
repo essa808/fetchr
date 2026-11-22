@@ -1,0 +1,32 @@
+{
+  "name": {
+    "message": "Fetchr"
+  },
+  "description": {
+    "message": "أرسل التحميلات إلى مدير التحميل Fetchr."
+  },
+  "menuDownload": {
+    "message": "التحميل باستخدام Fetchr"
+  },
+  "catchDownloads": {
+    "message": "التقاط التحميلات"
+  },
+  "notOnThisSite": {
+    "message": "ليس على هذا الموقع"
+  },
+  "statusConnected": {
+    "message": "مرتبط"
+  },
+  "statusNotRunning": {
+    "message": "البرنامج غير مفتوح"
+  },
+  "statusMissing": {
+    "message": "غير مرتبط"
+  },
+  "helpNotRunning": {
+    "message": "سيفتح Fetchr تلقائياً عندما تحمّل شيئاً."
+  },
+  "helpMissing": {
+    "message": "افتح Fetchr، اضغط المتصفح، ثم ربط."
+  }
+}

@@ -1,0 +1,57 @@
+<Window x:Class="Fetchr.App.BrowserDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:app="clr-namespace:Fetchr.App"
+        Style="{StaticResource Dialog}" Width="560" Title="{DynamicResource S.Br.Title}">
+  <StackPanel>
+    <StackPanel Margin="24,20,24,16">
+      <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+        <app:IconView Data="{StaticResource Icon.Globe}" Width="20" Height="20" Margin="0,0,8,0" VerticalAlignment="Center" />
+        <TextBlock Text="{DynamicResource S.Br.Title}" Style="{StaticResource Title}" />
+      </StackPanel>
+      <TextBlock Text="{DynamicResource S.Br.Intro}" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,0,0,16" />
+
+      <TextBlock Text="{DynamicResource S.Br.Step1}" TextWrapping="Wrap" FontWeight="SemiBold" Margin="0,0,0,8" />
+      <ItemsControl x:Name="BrowserList" Margin="0,0,0,8">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <DockPanel Margin="0,2">
+              <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" TextElement.Foreground="{Binding Brush}">
+                <app:IconView Data="{Binding Icon}" Margin="0,0,6,0" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding State}" FontSize="{DynamicResource Type.Caption.Size}" VerticalAlignment="Center" />
+              </StackPanel>
+              <TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
+            </DockPanel>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+      <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+        <Button x:Name="ConnectButton" Style="{StaticResource BtnPrimary}" Content="{DynamicResource S.Br.Connect}" Click="OnConnect" Margin="0,0,8,0" />
+        <Button x:Name="DisconnectButton" Style="{StaticResource BtnGhost}" Content="{DynamicResource S.Br.Disconnect}" Click="OnDisconnect" />
+      </StackPanel>
+
+      <TextBlock Text="{DynamicResource S.Br.Step2}" TextWrapping="Wrap" FontWeight="SemiBold" Margin="0,0,0,8" />
+      <DockPanel Margin="0,0,0,16">
+        <Button DockPanel.Dock="Right" Style="{StaticResource BtnSecondary}" Click="OnCopyAddress" Margin="8,0,0,0">
+          <StackPanel Orientation="Horizontal">
+            <app:IconView Data="{StaticResource Icon.Copy}" Margin="0,0,8,0" />
+            <TextBlock x:Name="CopyText" Text="{DynamicResource S.Br.CopyAddress}" />
+          </StackPanel>
+        </Button>
+        <TextBox Text="chrome://extensions   ·   edge://extensions" IsReadOnly="True" FlowDirection="LeftToRight"
+                 FontFamily="{DynamicResource Font.Mono}" FontSize="{DynamicResource Type.Caption.Size}" />
+      </DockPanel>
+
+      <TextBlock Text="{DynamicResource S.Br.Step3}" TextWrapping="Wrap" FontWeight="SemiBold" Margin="0,0,0,8" />
+      <DockPanel>
+        <Button DockPanel.Dock="Right" Style="{StaticResource BtnSecondary}" Content="{DynamicResource S.OpenFolder}" Click="OnOpenFolder" Margin="8,0,0,0" />
+        <TextBox x:Name="FolderBox" IsReadOnly="True" FlowDirection="LeftToRight" FontFamily="{DynamicResource Font.Mono}" FontSize="{DynamicResource Type.Caption.Size}" />
+      </DockPanel>
+    </StackPanel>
+    <Border Style="{StaticResource DialogFooter}">
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <Button Style="{StaticResource BtnSecondary}" Content="{DynamicResource S.Close}" IsCancel="True" IsDefault="True" />
+      </StackPanel>
+    </Border>
+  </StackPanel>
+</Window>

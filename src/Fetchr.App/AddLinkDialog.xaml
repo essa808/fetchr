@@ -1,0 +1,62 @@
+<Window x:Class="Fetchr.App.AddLinkDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:app="clr-namespace:Fetchr.App"
+        Style="{StaticResource Dialog}" Title="{DynamicResource S.Add.Title}">
+  <StackPanel>
+    <StackPanel Margin="24,20,24,16">
+      <TextBlock Text="{DynamicResource S.Add.Title}" Style="{StaticResource Title}" Margin="0,0,0,16" />
+
+      <Label Content="{DynamicResource S.Add.Link}" Target="{Binding ElementName=UrlBox}" Style="{StaticResource FieldLabel}" />
+      <DockPanel>
+        <Button x:Name="CheckButton" DockPanel.Dock="Right" Style="{StaticResource BtnSecondary}" Margin="8,0,0,0"
+                Content="{DynamicResource S.Add.Check}" Click="OnCheck" />
+        <TextBox x:Name="UrlBox" FlowDirection="LeftToRight" TextChanged="OnUrlChanged" AutomationProperties.HelpText="https://" />
+      </DockPanel>
+      <StackPanel x:Name="ErrorRow" Orientation="Horizontal" Margin="0,6,0,0" Visibility="Collapsed"
+                  TextElement.Foreground="{DynamicResource Brush.Danger}">
+        <app:IconView Data="{StaticResource Icon.CircleX}" Margin="0,0,6,0" VerticalAlignment="Top" />
+        <TextBlock x:Name="ErrorText" TextWrapping="Wrap" FontSize="{DynamicResource Type.Caption.Size}" MaxWidth="440"
+                   AutomationProperties.LiveSetting="Assertive" />
+      </StackPanel>
+
+      <!-- Shown after the link is checked (S03) -->
+      <StackPanel x:Name="Details" Visibility="Collapsed" Margin="0,16,0,0">
+        <Label Content="{DynamicResource S.Add.FileName}" Target="{Binding ElementName=NameBox}" Style="{StaticResource FieldLabel}" />
+        <TextBox x:Name="NameBox" FlowDirection="LeftToRight" />
+        <TextBlock x:Name="SizeText" Style="{StaticResource Caption}" Margin="0,6,0,0" FlowDirection="LeftToRight" HorizontalAlignment="Left" />
+
+        <Label Content="{DynamicResource S.Add.SaveTo}" Target="{Binding ElementName=FolderBox}" Style="{StaticResource FieldLabel}" Margin="0,12,0,0" />
+        <DockPanel>
+          <Button DockPanel.Dock="Right" Style="{StaticResource BtnSecondary}" Margin="8,0,0,0" Content="{DynamicResource S.Add.Browse}" Click="OnBrowse" />
+          <TextBox x:Name="FolderBox" FlowDirection="LeftToRight" FontFamily="{DynamicResource Font.Mono}" FontSize="{DynamicResource Type.Caption.Size}" />
+        </DockPanel>
+        <TextBlock x:Name="FreeText" Style="{StaticResource Caption}" Margin="0,6,0,0" />
+
+        <StackPanel Margin="0,12,0,0">
+          <StackPanel x:Name="ResumeRow" Orientation="Horizontal" Margin="0,0,0,4">
+            <app:IconView x:Name="ResumeIcon" Margin="0,0,6,0" />
+            <TextBlock x:Name="ResumeText" FontSize="{DynamicResource Type.Caption.Size}" TextWrapping="Wrap" MaxWidth="440" />
+          </StackPanel>
+          <StackPanel x:Name="ExtractRow" Orientation="Horizontal" TextElement.Foreground="{DynamicResource Brush.Accent}" Visibility="Collapsed">
+            <app:IconView Data="{StaticResource Icon.Archive}" Margin="0,0,6,0" />
+            <TextBlock Text="{DynamicResource S.Add.WillExtract}" FontSize="{DynamicResource Type.Caption.Size}" />
+          </StackPanel>
+        </StackPanel>
+      </StackPanel>
+    </StackPanel>
+
+    <Border Style="{StaticResource DialogFooter}">
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <Button Style="{StaticResource BtnGhost}" Content="{DynamicResource S.Cancel}" IsCancel="True" Margin="0,0,8,0" />
+        <Button x:Name="LaterButton" Style="{StaticResource BtnSecondary}" Content="{DynamicResource S.Add.Later}" Click="OnLater" Margin="0,0,8,0" Visibility="Collapsed" />
+        <Button x:Name="StartButton" Style="{StaticResource BtnPrimary}" IsDefault="True" Click="OnStart">
+          <StackPanel Orientation="Horizontal">
+            <app:IconView x:Name="StartIcon" Data="{StaticResource Icon.ArrowDown}" Margin="0,0,8,0" />
+            <TextBlock x:Name="StartText" Text="{DynamicResource S.Add.Check}" />
+          </StackPanel>
+        </Button>
+      </StackPanel>
+    </Border>
+  </StackPanel>
+</Window>

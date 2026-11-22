@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_name__",
+  "description": "__MSG_description__",
+  "version": "0.2.0",
+  "default_locale": "en",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2Gs7rqfZ6ubWe4gefoEs7UZMyqHw3E7rCdqcgk2oTrjUSuRxuloAjs2NewXIDRk7vUWuNm3jSN5n8sgMq90ODltxv5Y+sImbZrlDgffVMwdSFJbbd588TPXohI2YXPbzLNtEPNlcwfTGI8M+dKrSfFBuQZVpD7XDykhdoP75akSGaaoBbhLNQ0fIZCTe+raPODOlLz26syUbM9Ls9FP9rN8t3WaZsLSJi4OjTsZy+eWc4m0igMmaj35832aJhx4pk/WhL0+1eJ9o7zdPvTSleWM9B8s0adAeNHAU4ed56LVDQNmiDt9BvwP9OgvIrdXsk152WAmWVuz4FVUm6YslGQIDAQAB",
+  "permissions": ["downloads", "nativeMessaging", "cookies", "storage", "contextMenus"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html", "default_title": "__MSG_name__" },
+  "minimum_chrome_version": "116"
+}

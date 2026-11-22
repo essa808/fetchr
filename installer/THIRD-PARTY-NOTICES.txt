@@ -1,0 +1,13 @@
+Fetchr includes or uses the following third-party software.
+
+7-Zip (7z.exe, 7z.dll) - Copyright (C) Igor Pavlov
+  GNU LGPL with the unRAR licence restriction: the RAR code may be used to extract RAR
+  archives only, not to create them or to rebuild the RAR algorithm. Source code and full
+  terms: https://www.7-zip.org  -  the full licence text is in 7-Zip\License.txt.
+
+.NET runtime and WPF - Copyright (C) .NET Foundation and contributors. MIT licence.
+Microsoft.Data.Sqlite, System.Security.Cryptography.ProtectedData - Microsoft. MIT licence.
+SQLite (via SQLitePCLRaw) - public domain; SQLitePCLRaw by Eric Sink, Apache 2.0.
+Dapper - Stack Exchange and contributors. Apache 2.0.
+CommunityToolkit.Mvvm - .NET Foundation. MIT licence.
+Lucide icons - Lucide contributors. ISC licence (https://lucide.dev/license).

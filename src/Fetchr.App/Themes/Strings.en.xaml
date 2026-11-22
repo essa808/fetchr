@@ -1,0 +1,123 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+  <sys:String x:Key="S.AppName">Fetchr</sys:String>
+
+  <!-- Toolbar -->
+  <sys:String x:Key="S.AddLink">Add link</sys:String>
+  <sys:String x:Key="S.Resume">Resume</sys:String>
+  <sys:String x:Key="S.Pause">Pause</sys:String>
+  <sys:String x:Key="S.Extract">Extract</sys:String>
+  <sys:String x:Key="S.OpenFolder">Open folder</sys:String>
+  <sys:String x:Key="S.Open">Open</sys:String>
+  <sys:String x:Key="S.Delete">Delete</sys:String>
+  <sys:String x:Key="S.AutoExtract">Extract archives automatically</sys:String>
+
+  <!-- Sidebar -->
+  <sys:String x:Key="S.Filter.All">All</sys:String>
+  <sys:String x:Key="S.Filter.Downloading">Downloading</sys:String>
+  <sys:String x:Key="S.Filter.Completed">Completed</sys:String>
+  <sys:String x:Key="S.Filter.Unfinished">Unfinished</sys:String>
+
+  <!-- Table -->
+  <sys:String x:Key="S.Col.Name">Name</sys:String>
+  <sys:String x:Key="S.Col.Size">Size</sys:String>
+  <sys:String x:Key="S.Col.Status">Status</sys:String>
+  <sys:String x:Key="S.Col.Progress">Progress</sys:String>
+  <sys:String x:Key="S.Col.Speed">Speed</sys:String>
+  <sys:String x:Key="S.Col.TimeLeft">Time left</sys:String>
+  <sys:String x:Key="S.Col.Added">Added</sys:String>
+
+  <sys:String x:Key="S.Empty.Title">No downloads yet</sys:String>
+  <sys:String x:Key="S.Empty.Hint">Paste a link to start. Archives are unpacked for you when they finish.</sys:String>
+  <sys:String x:Key="S.Empty.Filtered">Nothing here right now</sys:String>
+  <sys:String x:Key="S.Active">active</sys:String>
+
+  <!-- Statuses -->
+  <sys:String x:Key="S.Status.queued">Queued</sys:String>
+  <sys:String x:Key="S.Status.downloading">Downloading</sys:String>
+  <sys:String x:Key="S.Status.paused">Paused</sys:String>
+  <sys:String x:Key="S.Status.completed">Completed</sys:String>
+  <sys:String x:Key="S.Status.error">Error</sys:String>
+  <sys:String x:Key="S.Status.extracting">Extracting</sys:String>
+  <sys:String x:Key="S.Status.extracted">Extracted</sys:String>
+  <sys:String x:Key="S.Status.extract_failed">Extract failed</sys:String>
+
+  <!-- Add link (S02/S03) -->
+  <sys:String x:Key="S.Add.Title">Add a download</sys:String>
+  <sys:String x:Key="S.Add.Link">Link</sys:String>
+  <sys:String x:Key="S.Add.Check">Check link</sys:String>
+  <sys:String x:Key="S.Add.Checking">Checking…</sys:String>
+  <sys:String x:Key="S.Add.FileName">File name</sys:String>
+  <sys:String x:Key="S.Add.SaveTo">Save to</sys:String>
+  <sys:String x:Key="S.Add.Browse">Browse…</sys:String>
+  <sys:String x:Key="S.Add.Start">Start download</sys:String>
+  <sys:String x:Key="S.Add.Later">Add paused</sys:String>
+  <sys:String x:Key="S.Cancel">Cancel</sys:String>
+  <sys:String x:Key="S.Close">Close</sys:String>
+  <sys:String x:Key="S.Add.Resumable">Can be paused and resumed</sys:String>
+  <sys:String x:Key="S.Add.NotResumable">This server can't resume: pausing will restart the file</sys:String>
+  <sys:String x:Key="S.Add.WillExtract">Will be unpacked into its own folder when done</sys:String>
+  <sys:String x:Key="S.Add.UnknownSize">Unknown size</sys:String>
+  <sys:String x:Key="S.Add.Free">{0} free on this drive</sys:String>
+  <sys:String x:Key="S.Add.Invalid">Enter a link that starts with http:// or https://</sys:String>
+
+  <!-- Progress (S04) -->
+  <sys:String x:Key="S.Prog.Downloaded">Downloaded</sys:String>
+  <sys:String x:Key="S.Prog.Speed">Speed</sys:String>
+  <sys:String x:Key="S.Prog.TimeLeft">Time left</sys:String>
+  <sys:String x:Key="S.Prog.Connections">Connections</sys:String>
+  <sys:String x:Key="S.Prog.Resume">Resume support</sys:String>
+  <sys:String x:Key="S.Yes">Yes</sys:String>
+  <sys:String x:Key="S.No">No</sys:String>
+
+  <!-- Completed (S05) -->
+  <sys:String x:Key="S.Done.Title">Download complete</sys:String>
+  <sys:String x:Key="S.Done.OpenExtracted">Open extracted folder</sys:String>
+  <sys:String x:Key="S.Done.DontShow">Don't show this after each download</sys:String>
+
+  <!-- Delete -->
+  <sys:String x:Key="S.Del.Title">Remove downloads</sys:String>
+  <sys:String x:Key="S.Del.Body">Remove the selected downloads from the list? Unfinished parts are deleted. Finished files stay where they are unless you tick the box.</sys:String>
+  <sys:String x:Key="S.Del.Recycle">Also move finished files to the Recycle Bin</sys:String>
+  <sys:String x:Key="S.Del.Confirm">Remove</sys:String>
+
+  <!-- M2 -->
+  <sys:String x:Key="S.Status.waiting_parts">Waiting for parts</sys:String>
+  <sys:String x:Key="S.Status.needs_password">Needs password</sys:String>
+  <sys:String x:Key="S.Filter.Categories">Categories</sys:String>
+  <sys:String x:Key="S.Cat.Compressed">Compressed</sys:String>
+  <sys:String x:Key="S.Cat.Programs">Programs</sys:String>
+  <sys:String x:Key="S.Cat.Video">Video</sys:String>
+  <sys:String x:Key="S.Cat.Music">Music</sys:String>
+  <sys:String x:Key="S.Cat.Documents">Documents</sys:String>
+  <sys:String x:Key="S.Cat.General">Other</sys:String>
+  <sys:String x:Key="S.Browser">Browser</sys:String>
+  <sys:String x:Key="S.Br.Title">Catch downloads from your browser</sys:String>
+  <sys:String x:Key="S.Br.Intro">Fetchr takes over downloads you start in Chrome or Edge, carrying your login cookies so protected links work too.</sys:String>
+  <sys:String x:Key="S.Br.Step1">1. Connect Fetchr to your browsers (adds one registry entry for your Windows account only).</sys:String>
+  <sys:String x:Key="S.Br.Connect">Connect</sys:String>
+  <sys:String x:Key="S.Br.Disconnect">Disconnect</sys:String>
+  <sys:String x:Key="S.Br.Connected">Connected</sys:String>
+  <sys:String x:Key="S.Br.NotConnected">Not connected</sys:String>
+  <sys:String x:Key="S.Br.Step2">2. In the browser, open the extensions page and turn on Developer mode:</sys:String>
+  <sys:String x:Key="S.Br.Step3">3. Choose "Load unpacked" and pick this folder:</sys:String>
+  <sys:String x:Key="S.Br.CopyAddress">Copy address</sys:String>
+  <sys:String x:Key="S.Br.Copied">Copied</sys:String>
+  <sys:String x:Key="S.Pwd.Title">Archive password</sys:String>
+  <sys:String x:Key="S.Pwd.Body">This archive is protected. Enter its password to unpack it.</sys:String>
+  <sys:String x:Key="S.Pwd.Password">Password</sys:String>
+  <sys:String x:Key="S.Pwd.Remember">Remember it and try it on other archives</sys:String>
+  <sys:String x:Key="S.Pwd.Wrong">That password didn't work. Check it and try again.</sys:String>
+  <sys:String x:Key="S.Pwd.Unpack">Unpack</sys:String>
+  <sys:String x:Key="S.Tray.Open">Open Fetchr</sys:String>
+  <sys:String x:Key="S.Tray.PauseAll">Pause all</sys:String>
+  <sys:String x:Key="S.Tray.ResumeAll">Resume all</sys:String>
+  <sys:String x:Key="S.Tray.Exit">Exit</sys:String>
+  <sys:String x:Key="S.Tray.StillRunning">Fetchr keeps downloading in the background. Right-click the tray icon to exit.</sys:String>
+  <sys:String x:Key="S.Note.Done">Download complete</sys:String>
+  <sys:String x:Key="S.Note.Extracted">Unpacked</sys:String>
+  <sys:String x:Key="S.Note.NeedsPassword">This archive needs a password</sys:String>
+  <sys:String x:Key="S.Note.Failed">Download failed</sys:String>
+  <sys:String x:Key="S.Need7z">Unpacking .rar and .7z needs 7-Zip (free). Install it from 7-zip.org, then press Extract again.</sys:String>
+</ResourceDictionary>

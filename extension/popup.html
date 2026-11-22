@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Fetchr</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <strong data-i18n="name">Fetchr</strong>
+    <span id="status" class="status" role="status"></span>
+  </header>
+
+  <label class="row">
+    <span data-i18n="catchDownloads">Catch downloads</span>
+    <input type="checkbox" id="enabled" role="switch">
+  </label>
+
+  <label class="row">
+    <span><span data-i18n="notOnThisSite">Not on this site</span> <span id="site" class="site"></span></span>
+    <input type="checkbox" id="excluded" role="switch">
+  </label>
+
+  <p id="help" class="help" hidden></p>
+  <script src="popup.js"></script>
+</body>
+</html>

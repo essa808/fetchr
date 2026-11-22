@@ -1,0 +1,57 @@
+<Window x:Class="Fetchr.App.ProgressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:app="clr-namespace:Fetchr.App"
+        Style="{StaticResource Dialog}" ShowInTaskbar="True" ResizeMode="CanMinimize"
+        Title="{Binding Name}">
+  <StackPanel>
+    <StackPanel Margin="24,20,24,16">
+      <TextBlock Text="{Binding Name}" Style="{StaticResource Title}" FontSize="{DynamicResource Type.Subtitle.Size}"
+                 FlowDirection="LeftToRight" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" Margin="0,0,0,8" />
+      <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource StatusPill}" HorizontalAlignment="Left" Margin="0,0,0,12" />
+      <TextBlock Text="{Binding Error}" Style="{StaticResource ErrorLine}" Margin="0,0,0,8" />
+      <ProgressBar Value="{Binding Progress, Mode=OneWay}" Tag="{Binding ProgressTag}" Margin="0,0,0,16" />
+
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+          <Style TargetType="TextBlock" BasedOn="{StaticResource Num}">
+            <Setter Property="Margin" Value="16,0,0,6" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+          </Style>
+        </Grid.Resources>
+        <TextBlock Grid.Row="0" Text="{DynamicResource S.Prog.Downloaded}" Style="{StaticResource Muted}" Margin="0,0,0,6" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding DownloadedText}" />
+        <TextBlock Grid.Row="1" Text="{DynamicResource S.Prog.Speed}" Style="{StaticResource Muted}" Margin="0,0,0,6" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SpeedText}" />
+        <TextBlock Grid.Row="2" Text="{DynamicResource S.Prog.TimeLeft}" Style="{StaticResource Muted}" Margin="0,0,0,6" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding EtaText}" />
+        <TextBlock Grid.Row="3" Text="{DynamicResource S.Prog.Connections}" Style="{StaticResource Muted}" Margin="0,0,0,6" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ConnectionsText}" />
+        <TextBlock Grid.Row="4" Text="{DynamicResource S.Prog.Resume}" Style="{StaticResource Muted}" Margin="0,0,0,6" />
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding ResumableText}" />
+      </Grid>
+
+      <app:SegmentMap Height="{DynamicResource Size.SegmentMap}" Margin="0,12,0,0"
+                      Segments="{Binding Segments}" Total="{Binding Total}" AutomationProperties.Name="Segments" />
+    </StackPanel>
+
+    <Border Style="{StaticResource DialogFooter}">
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <Button Style="{StaticResource BtnGhost}" Content="{DynamicResource S.Close}" IsCancel="True" Click="OnClose" Margin="0,0,8,0" />
+        <Button x:Name="ToggleButton" Style="{StaticResource BtnPrimary}" IsDefault="True" Click="OnToggle">
+          <StackPanel Orientation="Horizontal">
+            <app:IconView x:Name="ToggleIcon" Margin="0,0,8,0" />
+            <TextBlock x:Name="ToggleText" />
+          </StackPanel>
+        </Button>
+      </StackPanel>
+    </Border>
+  </StackPanel>
+</Window>

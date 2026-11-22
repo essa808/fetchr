@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Fetchr.App/Fetchr.App.csproj" />
+    <Project Path="src/Fetchr.Core/Fetchr.Core.csproj" />
+    <Project Path="src/Fetchr.Host/Fetchr.Host.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Fetchr.Core.Tests/Fetchr.Core.Tests.csproj" />
+  </Folder>
+</Solution>
