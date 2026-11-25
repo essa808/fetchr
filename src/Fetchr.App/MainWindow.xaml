@@ -25,6 +25,8 @@
       <DockPanel>
         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
           <CheckBox Content="{DynamicResource S.AutoExtract}" IsChecked="{Binding AutoExtract}" Margin="0,0,16,0" />
+          <Button x:Name="SettingsButton" Style="{StaticResource BtnSecondary}" Height="{DynamicResource Size.ControlSm}" Padding="12,0"
+                  Content="{DynamicResource S.Settings}" Click="OnSettings" Margin="0,0,8,0" />
           <Button x:Name="LangButton" Style="{StaticResource BtnSecondary}" Height="{DynamicResource Size.ControlSm}" Padding="12,0"
                   Click="OnToggleLanguage" AutomationProperties.Name="Language / اللغة" />
         </StackPanel>

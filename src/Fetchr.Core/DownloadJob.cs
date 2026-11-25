@@ -36,6 +36,7 @@ internal sealed class DownloadJob
     private readonly DownloadManager _m;
     private readonly DownloadRecord _rec;
     private List<SegmentState> _segs;
+    private readonly Lock _segsLock = new();
     private readonly CancellationTokenSource _stop = new();
     private readonly Dictionary<string, string> _headers;
     private SafeFileHandle? _handle;
@@ -63,7 +64,10 @@ internal sealed class DownloadJob
         try { await Completion; } catch { /* the job records its own outcome */ }
     }
 
-    public long Downloaded => _segs.Sum(s => Math.Max(0, s.Written));
+    public long Downloaded
+    {
+        get { lock (_segsLock) return _segs.Sum(s => Math.Max(0, s.Written)); }
+    }
 
     public DownloadSnapshot Snapshot(DownloadRecord stored)
     {
@@ -77,7 +81,8 @@ internal sealed class DownloadJob
             _speedBytes = bytes;
             _speedAt = now;
         }
-        var segs = _segs;
+        List<SegmentState> segs;
+        lock (_segsLock) segs = _segs.ToList();
         return new DownloadSnapshot(_rec.Id, _rec.FileName, _rec.FullPath, DownloadStatus.Downloading, _rec.TotalSize, bytes, _speed,
             segs.Count(s => s.Active), segs.Count, _rec.Resumable, null, null,
             segs.Select(s => new SegmentView(s.Start, s.End, s.Current)).ToList(), stored.CreatedAt, stored.CategoryId);
@@ -105,7 +110,9 @@ internal sealed class DownloadJob
             while (true)
             {
                 using var round = CancellationTokenSource.CreateLinkedTokenSource(ct);
-                var workers = _segs.Where(s => !s.Done).Select(s => RunSegmentAsync(s, round)).ToList();
+                List<SegmentState> pending;
+                lock (_segsLock) pending = _segs.Where(s => !s.Done).ToList();
+                var workers = pending.Select(s => RunSegmentAsync(s, round)).ToList();
                 try
                 {
                     await Task.WhenAll(workers);
@@ -180,7 +187,7 @@ internal sealed class DownloadJob
             CurrentByte = 0,
         };
         _m.Store.ReplaceSegments(_rec.Id, [seg]);
-        _segs = [new SegmentState(seg)];
+        lock (_segsLock) _segs = [new SegmentState(seg)];
     }
 
     private async Task RunSegmentAsync(SegmentState s, CancellationTokenSource round)
@@ -188,15 +195,16 @@ internal sealed class DownloadJob
         var ct = round.Token;
         var attempts = 0;
         var buffer = ArrayPool<byte>.Shared.Rent(128 * 1024);
+        var work = s;
         try
         {
-            while (!s.Done)
+            while (true)
             {
                 ct.ThrowIfCancellationRequested();
                 try
                 {
-                    s.Active = true;
-                    await FetchRangeAsync(s, buffer, ct);
+                    work.Active = true;
+                    await FetchRangeAsync(work, buffer, ct);
                     attempts = 0;
                 }
                 catch (RangeIgnoredException)
@@ -206,18 +214,70 @@ internal sealed class DownloadJob
                 }
                 catch (Exception e) when (IsTransient(e, ct))
                 {
-                    s.Active = false;
+                    work.Active = false;
                     if (++attempts > _m.RetryLimit) throw;
                     var delay = TimeSpan.FromMilliseconds(Math.Min(_m.RetryBaseDelay.TotalMilliseconds * Math.Pow(2, attempts - 1), 15_000));
                     await Task.Delay(delay, ct);
-                    if (!_rec.Resumable) s.Current = s.Start; // can't continue mid-file without Range
+                    if (!_rec.Resumable) work.Current = work.Start; // can't continue mid-file without Range
+                    continue;
                 }
+                work.Active = false;
+                if (!work.Done) continue;
+                // This connection is free: take the tail of the slowest remaining range instead of stopping.
+                if (TrySteal(work) is not { } stolen) break;
+                work = stolen;
             }
         }
         finally
         {
-            s.Active = false;
+            work.Active = false;
             ArrayPool<byte>.Shared.Return(buffer);
+        }
+    }
+
+    /// <summary>
+    /// Dynamic re-splitting: hand half of the largest unfinished range to a connection whose own
+    /// range just finished, so one slow connection no longer holds up the whole file.
+    /// </summary>
+    private SegmentState? TrySteal(SegmentState finished)
+    {
+        if (!_rec.Resumable || _rec.TotalSize is not long) return null;
+        lock (_segsLock)
+        {
+            if (_segs.Count >= _m.MaxDynamicSegments) return null;
+
+            SegmentState? victim = null;
+            long best = 0;
+            foreach (var v in _segs)
+            {
+                if (ReferenceEquals(v, finished) || v.Done) continue;
+                var remaining = v.End - v.Current + 1;
+                if (remaining > best)
+                {
+                    best = remaining;
+                    victim = v;
+                }
+            }
+            if (victim is null || best < 2 * _m.StealChunkMin) return null;
+
+            var take = best / 2;
+            var oldEnd = victim.End;
+            var takeStart = oldEnd - take + 1;
+
+            var rec = new SegmentRecord
+            {
+                DownloadId = _rec.Id,
+                StartByte = takeStart,
+                EndByte = oldEnd,
+                CurrentByte = takeStart,
+            };
+            // Store the new range before shrinking the victim: if anything fails here, the saved
+            // state still covers every byte (an overlap at worst), never a hole.
+            _m.Store.InsertSegment(rec);
+            victim.End = takeStart - 1; // the rest of the range belongs to the thief now
+            var stolen = new SegmentState(rec);
+            _segs.Add(stolen);
+            return stolen;
         }
     }
 
@@ -235,7 +295,7 @@ internal sealed class DownloadJob
         }
 
         using var resp = await _m.Http.SendAsync(req, HttpCompletionOption.ResponseHeadersRead, ct);
-        if (ranged && resp.StatusCode == HttpStatusCode.OK && !(s.Current == 0 && _segs.Count == 1))
+        if (ranged && resp.StatusCode == HttpStatusCode.OK && !(s.Current == 0 && SegmentCount == 1))
             throw new RangeIgnoredException();
         if (resp.StatusCode == HttpStatusCode.RequestedRangeNotSatisfiable && s.Current > s.End)
             return;
@@ -294,16 +354,23 @@ internal sealed class DownloadJob
 
     private readonly Lock _persistLock = new();
 
+    private int SegmentCount
+    {
+        get { lock (_segsLock) return _segs.Count; }
+    }
+
     /// <summary>Capture offsets, flush the data they describe, then store them. Order matters.</summary>
     private void Persist()
     {
         lock (_persistLock)
         {
             if (_handle is null || _handle.IsClosed) return;
-            var captured = _segs.Select(s => (s.Id, s.Start, Current: s.Current, End: s.End, s.StatusText)).ToList();
+            List<(string Id, long Start, long Current, long End, string Status)> captured;
+            lock (_segsLock)
+                captured = _segs.Select(s => (s.Id, s.Start, Current: s.Current, End: s.End, s.StatusText)).ToList();
             RandomAccess.FlushToDisk(_handle);
             _m.Store.SaveProgress(_rec.Id, captured.Sum(c => c.Current - c.Start),
-                captured.Select(c => (c.Id, c.Current, c.End, c.StatusText)));
+                captured.Select(c => (c.Id, c.Current, c.End, c.Status)));
         }
     }
 

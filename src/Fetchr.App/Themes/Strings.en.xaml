@@ -12,6 +12,17 @@
   <sys:String x:Key="S.Open">Open</sys:String>
   <sys:String x:Key="S.Delete">Delete</sys:String>
   <sys:String x:Key="S.AutoExtract">Extract archives automatically</sys:String>
+  <sys:String x:Key="S.Settings">Settings</sys:String>
+
+  <!-- Settings -->
+  <sys:String x:Key="S.Set.Title">Download settings</sys:String>
+  <sys:String x:Key="S.Set.Connections">Connections per file</sys:String>
+  <sys:String x:Key="S.Set.ConnectionsHint">Each connection downloads part of the file. Raise this if the server limits each connection (1–32).</sys:String>
+  <sys:String x:Key="S.Set.Parallel">Downloads at the same time</sys:String>
+  <sys:String x:Key="S.Set.ParallelHint">The rest wait in the queue and start in order (1–16).</sys:String>
+  <sys:String x:Key="S.Set.NewOnly">Applies to new downloads. A running download keeps its original setting.</sys:String>
+  <sys:String x:Key="S.Set.Invalid">Enter a number between {0} and {1}.</sys:String>
+  <sys:String x:Key="S.Save">Save</sys:String>
 
   <!-- Sidebar -->
   <sys:String x:Key="S.Filter.All">All</sys:String>
@@ -56,6 +67,7 @@
   <sys:String x:Key="S.Cancel">Cancel</sys:String>
   <sys:String x:Key="S.Close">Close</sys:String>
   <sys:String x:Key="S.Add.Resumable">Can be paused and resumed</sys:String>
+  <sys:String x:Key="S.Add.Connections">Connections: {0}</sys:String>
   <sys:String x:Key="S.Add.NotResumable">This server can't resume: pausing will restart the file</sys:String>
   <sys:String x:Key="S.Add.WillExtract">Will be unpacked into its own folder when done</sys:String>
   <sys:String x:Key="S.Add.UnknownSize">Unknown size</sys:String>

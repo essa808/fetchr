@@ -210,6 +210,8 @@ public partial class MainWindow : Window
 
     private void OnBrowser(object sender, RoutedEventArgs e) => new BrowserDialog { Owner = this }.ShowDialog();
 
+    private void OnSettings(object sender, RoutedEventArgs e) => new SettingsDialog { Owner = this }.ShowDialog();
+
     private void OnToggleLanguage(object sender, RoutedEventArgs e)
     {
         App.SetLanguage(App.Language == "ar" ? "en" : "ar");

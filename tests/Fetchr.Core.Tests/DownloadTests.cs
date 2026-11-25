@@ -55,6 +55,69 @@ public sealed class DownloadTests : IDisposable
     }
 
     [Fact]
+    public async Task Fast_connection_takes_over_the_tail_of_a_slow_range()
+    {
+        // The last planned segment is deliberately slow; the other connections finish first and
+        // must split part of it off instead of just waiting.
+        _server.SlowFrom = _body.Length - 700_000;
+        _server.SlowThrottleMs = 120;
+        await using var m = new DownloadManager(NewStore())
+        {
+            FlushInterval = TimeSpan.FromMilliseconds(100),
+            RetryBaseDelay = TimeSpan.FromMilliseconds(20),
+            ReadTimeout = TimeSpan.FromSeconds(5),
+            MinSegmentSize = 256 * 1024,
+            StealChunkMin = 256 * 1024,
+        };
+        var rec = await DownloadAsync(m);
+
+        AssertSameBytes(rec);
+        Assert.True(m.Store.GetSegments(rec.Id).Count > 8,
+            "a fast connection should have split the slow range instead of waiting for it");
+    }
+
+    [Fact]
+    public async Task Pause_and_resume_keep_dynamically_split_segments()
+    {
+        _server.SlowFrom = _body.Length - 700_000;
+        _server.SlowThrottleMs = 150;
+        var db = Path.Combine(_dir, "fetchr.db");
+        var store = new Store(db);
+        string id;
+        await using (var m1 = new DownloadManager(store)
+        {
+            FlushInterval = TimeSpan.FromMilliseconds(100),
+            RetryBaseDelay = TimeSpan.FromMilliseconds(20),
+            ReadTimeout = TimeSpan.FromSeconds(5),
+            MinSegmentSize = 256 * 1024,
+            StealChunkMin = 256 * 1024,
+        })
+        {
+            var rec = m1.Add(await m1.ProbeAsync(_server.Url()), Out);
+            id = rec.Id;
+            await Task.Delay(700); // the fast connections finish and take part of the slow range
+            await m1.PauseAsync(id);
+            Assert.Equal(DownloadStatus.Paused, store.GetDownload(id)!.Status);
+            Assert.True(store.GetSegments(id).Count > 8, "the split should be on disk before the pause");
+        }
+
+        _server.SlowThrottleMs = 0;
+        await using var m2 = new DownloadManager(new Store(db))
+        {
+            FlushInterval = TimeSpan.FromMilliseconds(100),
+            RetryBaseDelay = TimeSpan.FromMilliseconds(20),
+            ReadTimeout = TimeSpan.FromSeconds(5),
+            MinSegmentSize = 256 * 1024,
+            StealChunkMin = 256 * 1024,
+        };
+        Assert.Equal(0, m2.Recover());
+        m2.Start(id);
+        await m2.WaitAsync(id);
+
+        AssertSameBytes(m2.Store.GetDownload(id)!);
+    }
+
+    [Fact]
     public async Task Pause_then_resume_in_a_new_process_continues_from_saved_offsets()
     {
         _server.ThrottleMs = 100; // ~1 s for the whole file over 8 connections

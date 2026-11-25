@@ -20,7 +20,7 @@
     <ApplicationIcon>..\..\installer\fetchr.ico</ApplicationIcon>
     <AssemblyName>Fetchr.App</AssemblyName>
     <Product>Fetchr</Product>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <Description>Fetchr download manager</Description>
   </PropertyGroup>
 

@@ -26,6 +26,9 @@ public sealed class TestServer : IDisposable
     public bool Chunkless { get; set; }
     /// <summary>Delay per 64 KB written, to make a download slow enough to pause.</summary>
     public int ThrottleMs { get; set; }
+    /// <summary>Answers whose range starts at or after this offset get <see cref="SlowThrottleMs"/> instead.</summary>
+    public long SlowFrom { get; set; } = -1;
+    public int SlowThrottleMs { get; set; }
     public string? ContentDisposition { get; set; }
     public string Etag { get; set; } = "\"v1\"";
 
@@ -108,7 +111,8 @@ public sealed class TestServer : IDisposable
                 {
                     var n = (int)Math.Min(65536, limit - off);
                     await stream.WriteAsync(Body.AsMemory((int)(start + off), n));
-                    if (ThrottleMs > 0) await Task.Delay(ThrottleMs);
+                    var delay = SlowThrottleMs > 0 && start + off >= SlowFrom ? SlowThrottleMs : ThrottleMs;
+                    if (delay > 0) await Task.Delay(delay);
                 }
                 await stream.FlushAsync();
                 if (drop) client.Client.LingerState = new LingerOption(true, 0); // reset, not a clean close

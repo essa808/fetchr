@@ -83,6 +83,8 @@ public partial class AddLinkDialog : Window
             ResumeIcon.Data = App.Res<Geometry>(p.Resumable ? "Icon.Check" : "Icon.TriangleAlert");
             ResumeRow.SetValue(TextElement.ForegroundProperty, App.BrushOf(p.Resumable ? "Brush.Success" : "Brush.Warning"));
             ResumeText.SetResourceReference(TextBlock.TextProperty, p.Resumable ? "S.Add.Resumable" : "S.Add.NotResumable");
+            var connections = p.Resumable ? Math.Clamp(App.Store.GetInt("default_connections", 8), 1, 32) : 1;
+            ConnectionsText.Text = string.Format(App.Str("S.Add.Connections"), connections);
             ExtractRow.Visibility = Extractor.CanExtract(NameBox.Text) && App.Store.GetBool("auto_extract", true) ? Visibility.Visible : Visibility.Collapsed;
             Details.Visibility = LaterButton.Visibility = Visibility.Visible;
             StartText.SetResourceReference(TextBlock.TextProperty, "S.Add.Start");

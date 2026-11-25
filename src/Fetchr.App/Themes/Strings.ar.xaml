@@ -11,6 +11,17 @@
   <sys:String x:Key="S.Open">فتح</sys:String>
   <sys:String x:Key="S.Delete">حذف</sys:String>
   <sys:String x:Key="S.AutoExtract">فك ضغط الملفات تلقائياً</sys:String>
+  <sys:String x:Key="S.Settings">الإعدادات</sys:String>
+
+  <!-- Settings -->
+  <sys:String x:Key="S.Set.Title">إعدادات التنزيل</sys:String>
+  <sys:String x:Key="S.Set.Connections">الاتصالات لكل ملف</sys:String>
+  <sys:String x:Key="S.Set.ConnectionsHint">كل اتصال ينزّل جزءاً من الملف. ارفع الرقم إذا كان السيرفر يحد سرعة كل اتصال على حدة (من 1 إلى 32).</sys:String>
+  <sys:String x:Key="S.Set.Parallel">أقصى تنزيلات في وقت واحد</sys:String>
+  <sys:String x:Key="S.Set.ParallelHint">الباقي ينتظر في الطابور ويبدأ بالترتيب (من 1 إلى 16).</sys:String>
+  <sys:String x:Key="S.Set.NewOnly">تُطبَّق على التحميلات الجديدة. التحميل الجاري يكمل بإعداده القديم.</sys:String>
+  <sys:String x:Key="S.Set.Invalid">أدخل رقماً بين {0} و {1}.</sys:String>
+  <sys:String x:Key="S.Save">حفظ</sys:String>
 
   <sys:String x:Key="S.Filter.All">الكل</sys:String>
   <sys:String x:Key="S.Filter.Downloading">قيد التحميل</sys:String>
@@ -51,6 +62,7 @@
   <sys:String x:Key="S.Cancel">إلغاء</sys:String>
   <sys:String x:Key="S.Close">إغلاق</sys:String>
   <sys:String x:Key="S.Add.Resumable">يمكن إيقافه واستكماله</sys:String>
+  <sys:String x:Key="S.Add.Connections">عدد الاتصالات: {0}</sys:String>
   <sys:String x:Key="S.Add.NotResumable">هذا الخادم لا يدعم الاستكمال: الإيقاف سيعيد التحميل من البداية</sys:String>
   <sys:String x:Key="S.Add.WillExtract">سيُفك ضغطه في مجلد خاص به عند الاكتمال</sys:String>
   <sys:String x:Key="S.Add.UnknownSize">حجم غير معروف</sys:String>

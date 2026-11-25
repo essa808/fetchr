@@ -2,7 +2,7 @@
 ; Per-user install: no administrator prompt, installs to %LOCALAPPDATA%\Programs\Fetchr.
 
 #ifndef MyVersion
-  #define MyVersion "0.2.0"
+  #define MyVersion "0.3.0"
 #endif
 #ifndef PublishDir
   #define PublishDir "..\out\publish"

@@ -1,0 +1,29 @@
+<Window x:Class="Fetchr.App.SettingsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Style="{StaticResource Dialog}" Width="480" Title="{DynamicResource S.Set.Title}">
+  <StackPanel>
+    <StackPanel Margin="24,20,24,16">
+      <TextBlock Text="{DynamicResource S.Set.Title}" Style="{StaticResource Title}" Margin="0,0,0,16" />
+
+      <Label Content="{DynamicResource S.Set.Connections}" Target="{Binding ElementName=ConnectionsBox}" Style="{StaticResource FieldLabel}" />
+      <TextBox x:Name="ConnectionsBox" Width="80" HorizontalAlignment="Left" FlowDirection="LeftToRight" MaxLength="2" />
+      <TextBlock Text="{DynamicResource S.Set.ConnectionsHint}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,6,0,0" />
+
+      <Label Content="{DynamicResource S.Set.Parallel}" Target="{Binding ElementName=ParallelBox}" Style="{StaticResource FieldLabel}" Margin="0,16,0,0" />
+      <TextBox x:Name="ParallelBox" Width="80" HorizontalAlignment="Left" FlowDirection="LeftToRight" MaxLength="2" />
+      <TextBlock Text="{DynamicResource S.Set.ParallelHint}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,6,0,0" />
+
+      <TextBlock Text="{DynamicResource S.Set.NewOnly}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,16,0,0" />
+      <TextBlock x:Name="ErrorText" Foreground="{DynamicResource Brush.Danger}" FontSize="{DynamicResource Type.Caption.Size}"
+                 TextWrapping="Wrap" Margin="0,8,0,0" Visibility="Collapsed" AutomationProperties.LiveSetting="Assertive" />
+    </StackPanel>
+
+    <Border Style="{StaticResource DialogFooter}">
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <Button Style="{StaticResource BtnGhost}" Content="{DynamicResource S.Cancel}" IsCancel="True" Margin="0,0,8,0" />
+        <Button x:Name="SaveButton" Style="{StaticResource BtnPrimary}" Content="{DynamicResource S.Save}" IsDefault="True" Click="OnSave" />
+      </StackPanel>
+    </Border>
+  </StackPanel>
+</Window>

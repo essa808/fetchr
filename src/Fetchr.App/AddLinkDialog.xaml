@@ -38,6 +38,10 @@
             <app:IconView x:Name="ResumeIcon" Margin="0,0,6,0" />
             <TextBlock x:Name="ResumeText" FontSize="{DynamicResource Type.Caption.Size}" TextWrapping="Wrap" MaxWidth="440" />
           </StackPanel>
+          <StackPanel Orientation="Horizontal" Margin="0,0,0,4" TextElement.Foreground="{DynamicResource Brush.TextMuted}">
+            <app:IconView Data="{StaticResource Icon.Layers}" Margin="0,0,6,0" />
+            <TextBlock x:Name="ConnectionsText" FontSize="{DynamicResource Type.Caption.Size}" />
+          </StackPanel>
           <StackPanel x:Name="ExtractRow" Orientation="Horizontal" TextElement.Foreground="{DynamicResource Brush.Accent}" Visibility="Collapsed">
             <app:IconView Data="{StaticResource Icon.Archive}" Margin="0,0,6,0" />
             <TextBlock Text="{DynamicResource S.Add.WillExtract}" FontSize="{DynamicResource Type.Caption.Size}" />

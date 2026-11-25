@@ -173,6 +173,16 @@ public sealed class Store
         tx.Commit();
     }
 
+    /// <summary>Add a segment created while downloading (dynamic re-splitting of a slow range).</summary>
+    public void InsertSegment(SegmentRecord segment)
+    {
+        using var c = Open();
+        c.Execute("""
+            insert into segments (id, download_id, start_byte, end_byte, current_byte, status)
+            values (@Id, @DownloadId, @StartByte, @EndByte, @CurrentByte, @Status)
+            """, segment);
+    }
+
     /// <summary>
     /// Save progress. Callers flush the file data to disk first, so the stored offsets
     /// never run ahead of bytes that are really on disk.

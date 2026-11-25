@@ -1,12 +1,21 @@
 # Builds out\Fetchr-Setup-<version>.exe
-#   powershell -ExecutionPolicy Bypass -File installer\build.ps1 [-Version 0.2.0]
+#   powershell -ExecutionPolicy Bypass -File installer\build.ps1 [-Version 0.3.0]
 # Needs: .NET 10 SDK, Inno Setup 6, and 7-Zip installed on the build machine (its 7z.exe/7z.dll are bundled).
-param([string]$Version = "0.2.0")
+param([string]$Version = "0.3.0")
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 $out = Join-Path $root "out"
 $pub = Join-Path $out "publish"
-$dotnet = "C:\Program Files\dotnet\dotnet.exe"
+# Prefer a dotnet install that actually has an SDK (a per-user SDK is common).
+$dotnet = $null
+foreach ($c in @("C:\Program Files\dotnet\dotnet.exe", (Join-Path $env:USERPROFILE ".dotnet\dotnet.exe"))) {
+    if ((Test-Path $c) -and (Test-Path (Join-Path (Split-Path $c) "sdk"))) { $dotnet = $c; break }
+}
+if (-not $dotnet) {
+    $cmd = Get-Command dotnet -ErrorAction SilentlyContinue
+    if ($cmd) { $dotnet = $cmd.Source }
+}
+if (-not $dotnet) { throw ".NET SDK not found" }
 
 if (Test-Path $pub) { Remove-Item $pub -Recurse -Force }
 New-Item -ItemType Directory -Force $pub | Out-Null

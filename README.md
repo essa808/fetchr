@@ -8,7 +8,7 @@
 
 ## المزايا
 
-- **8 اتصالات لكل ملف** (قابلة للضبط) مع إعادة تجزئة الأجزاء البطيئة، واستكمال من حيث توقف بعد إعادة تشغيل البرنامج.
+- **8 اتصالات لكل ملف** (قابلة للضبط من زر **الإعدادات** في الشريط) مع إعادة تجزئة الأجزاء البطيئة تلقائياً: الاتصال الذي ينهي جزأه يأخذ ذيل الجزء الأبطأ بدل أن ينتظره، واستكمال من حيث توقف بعد إعادة تشغيل البرنامج.
 - **إضافة رابط** يدوياً، أو **التقاطه من المتصفح** عبر إضافة Chrome/Edge.
 - **إيقاف مؤقت / استكمال / إلغاء**، قائمة انتظار، تصنيف تلقائي حسب نوع الملف، بحث، وشريط حالة.
 - **فك ضغط تلقائي** عند الاكتمال: zip بمحرك مدمج، و rar / 7z / tar.gz / iso / الأرشيفات المجزّأة عبر 7-Zip، مع كلمات المرور.
@@ -20,7 +20,7 @@
 
 ## التنزيل
 
-من صفحة [الإصدارات](https://github.com/essa808/fetchr/releases/latest): `Fetchr-Setup-0.2.0.exe`
+من صفحة [الإصدارات](https://github.com/essa808/fetchr/releases/latest): `Fetchr-Setup-0.3.0.exe`
 
 - تثبيت لكل مستخدم بدون صلاحيات مدير، إلى `%LOCALAPPDATA%\Programs\Fetchr`.
 - الحزمة مستقلة: لا تحتاج .NET ولا 7-Zip على جهازك.
@@ -54,7 +54,7 @@ python tools/devserver.py <folder> --port 8800 --kbps 600
 ## بناء المثبّت
 
 ```bash
-powershell -ExecutionPolicy Bypass -File installer\build.ps1 -Version 0.2.0
+powershell -ExecutionPolicy Bypass -File installer\build.ps1 -Version 0.3.0
 ```
 
 ينتج `out\Fetchr-Setup-<version>.exe` (يحتاج .NET 10 SDK وInno Setup 6 و7-Zip على جهاز البناء).

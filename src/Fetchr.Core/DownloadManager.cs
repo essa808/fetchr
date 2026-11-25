@@ -29,6 +29,9 @@ public sealed class DownloadManager : IAsyncDisposable
     public TimeSpan RetryBaseDelay { get; init; } = TimeSpan.FromSeconds(1);
     public int RetryLimit { get; init; } = 8;
     public long MinSegmentSize { get; init; } = 512 * 1024;
+    /// <summary>Smallest tail a finished connection may take from a slow range.</summary>
+    public long StealChunkMin { get; init; } = 1024 * 1024;
+    public int MaxDynamicSegments { get; init; } = 64;
 
     /// <summary>Something about this download changed (status, name). Raised on a worker thread.</summary>
     public event Action<string>? Changed;
