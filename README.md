@@ -4,6 +4,12 @@
 
 مكتوب من الصفر كبديل مفتوح المصدر لفكرة مدير التحميلات الشهير — لا كود منه، ولا أيقوناته، ولا شيء من ترخيصه.
 
+[![release](https://img.shields.io/github/v/release/essa808/fetchr?style=flat-square)](https://github.com/essa808/fetchr/releases/latest)
+[![downloads](https://img.shields.io/github/downloads/essa808/fetchr/total?style=flat-square)](https://github.com/essa808/fetchr/releases)
+[![license](https://img.shields.io/github/license/essa808/fetchr?style=flat-square)](LICENSE)
+[![platform](https://img.shields.io/badge/platform-Windows%2010%2F11-2ea44f?style=flat-square)]()
+[![browser](https://img.shields.io/badge/extension-Chrome%20%7C%20Edge-4285F4?style=flat-square)]()
+
 ![النافذة الرئيسية](docs/screenshot-main.png)
 
 ## المزايا
